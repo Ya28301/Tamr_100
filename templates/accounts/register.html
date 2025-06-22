@@ -1,0 +1,55 @@
+{% include 'header.html' %}
+
+<main style="padding: 40px 0; font-family: 'Cairo', sans-serif;">
+  <h2 style="text-align: center; color: #4e342e; margin-bottom: 25px;">تسجيل مستخدم جديد</h2>
+
+  <div style="max-width: 400px; margin: auto; background: #fff3e0; padding: 25px 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+
+    {% if messages %}
+      <div style="background-color: #ffcdd2; color: #b71c1c; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
+        {% for message in messages %}
+          {{ message }}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <form method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+      {% csrf_token %}
+
+      <!-- اسم المستخدم -->
+      <label style="font-weight: bold;">اسم المستخدم:</label>
+      {{ form.username }}
+      {% if form.username.errors %}
+        <p style="color: red; font-size: 13px;">{{ form.username.errors.0 }}</p>
+      {% endif %}
+
+      <!-- البريد الإلكتروني -->
+      <label style="font-weight: bold;">البريد الإلكتروني:</label>
+      {{ form.email }}
+      {% if form.email.errors %}
+        <p style="color: red; font-size: 13px;">{{ form.email.errors.0 }}</p>
+      {% endif %}
+
+      <!-- كلمة المرور -->
+      <label style="font-weight: bold;">كلمة المرور:</label>
+      {{ form.password }}
+      {% if form.password.errors %}
+        <p style="color: red; font-size: 13px;">{{ form.password.errors.0 }}</p>
+      {% endif %}
+
+      <!-- تأكيد كلمة المرور -->
+      <label style="font-weight: bold;">تأكيد كلمة المرور:</label>
+      {{ form.confirm_password }}
+      {% if form.confirm_password.errors %}
+        <p style="color: red; font-size: 13px;">{{ form.confirm_password.errors.0 }}</p>
+      {% endif %}
+
+      <!-- زر الإنشاء -->
+      <button type="submit" style="padding: 10px; background-color: #6d4c41; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 15px;">
+        إنشاء حساب
+      </button>
+    </form>
+  </div>
+</main>
+
+{% include 'footer.html' %}

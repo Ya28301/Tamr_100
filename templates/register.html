@@ -1,0 +1,15 @@
+{% include 'header.html' %}
+
+<main style="padding: 30px; font-family: 'Cairo', sans-serif;">
+  <h2 style="text-align:center;">📝 تسجيل مستخدم جديد</h2>
+
+  <form method="post" style="max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 10px;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" style="background-color: #6d4c41; color: white; padding: 10px 20px; border: none; border-radius: 5px;">
+      تسجيل
+    </button>
+  </form>
+</main>
+
+{% include 'footer.html' %}

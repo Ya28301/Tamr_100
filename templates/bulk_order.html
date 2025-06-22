@@ -1,0 +1,18 @@
+{% include 'header.html' %}
+
+<main style="padding: 40px; font-family: 'Cairo', sans-serif;">
+  <h2 style="text-align: center; color: #4e342e;">📦 طلب بالجملة</h2>
+
+  <section style="max-width: 700px; margin: 30px auto; background: #fff8e1; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <button type="submit" style="background-color: #4e342e; color: white; padding: 10px 25px; border: none; border-radius: 5px; cursor: pointer;">
+        إرسال الطلب
+      </button>
+    </form>
+  </section>
+</main>
+
+{% include 'footer.html' %}

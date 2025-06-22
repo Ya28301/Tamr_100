@@ -1,0 +1,20 @@
+{% include 'header.html' %}
+<main style="padding: 50px; font-family: 'Cairo', sans-serif; background: #f9f9f9; border-radius: 12px; max-width: 600px; margin: auto;">
+  <h2 style="text-align: center; color: #3e4b30;">تواصل معنا</h2>
+  <p>يرجى تعبئة النموذج أدناه للتواصل مع فريق الدعم.</p>
+
+  {% if messages %}
+    {% for message in messages %}
+      <p style="color: green; font-weight: bold;">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="الاسم" required style="display:block; margin-bottom:10px; padding:10px; width:100%;">
+    <input type="email" name="email" placeholder="البريد الإلكتروني" required style="display:block; margin-bottom:10px; padding:10px; width:100%;">
+    <textarea name="message" placeholder="رسالتك" rows="5" required style="display:block; margin-bottom:10px; padding:10px; width:100%;"></textarea>
+    <button type="submit" style="padding: 12px 20px; background-color: #3e4b30; color: white; border: none; border-radius: 8px;">إرسال</button>
+  </form>
+</main>
+{% include 'footer.html' %}

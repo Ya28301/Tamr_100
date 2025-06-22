@@ -1,0 +1,25 @@
+{% include 'header.html' %}
+
+<main style="padding: 40px; font-family: 'Cairo', sans-serif;">
+  <h2 style="text-align: center; color: #4e342e;">🛍️ منتجاتنا</h2>
+
+  <section style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 40px;">
+    <!-- المنتج الأول -->
+    <div style="background: #fff3e0; padding: 20px; border-radius: 10px; width: 250px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+      <img src="{% static 'images/tamr1.jpg' %}" alt="تمر خلاص" style="width: 100%; border-radius: 10px;">
+      <h3 style="color: #4e342e; margin-top: 10px;">تمر خلاص</h3>
+      <p>تمر طبيعي فاخر، جودة عالية.</p>
+      <button style="background: #6d4c41; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;">أضف للسلة</button>
+    </div>
+
+    <!-- المنتج الثاني -->
+    <div style="background: #fff3e0; padding: 20px; border-radius: 10px; width: 250px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+      <img src="{% static 'images/tamr2.jpg' %}" alt="تمر سكري" style="width: 100%; border-radius: 10px;">
+      <h3 style="color: #4e342e; margin-top: 10px;">تمر سكري</h3>
+      <p>طري ولذيذ - مثالي للضيافة.</p>
+      <button style="background: #6d4c41; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;">أضف للسلة</button>
+    </div>
+  </section>
+</main>
+
+{% include 'footer.html' %}

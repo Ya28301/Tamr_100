@@ -1,0 +1,19 @@
+<!-- header.html -->
+<header style="background: #3e4b30; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000;">
+  <h1 style="font-family: 'Cairo', sans-serif;">SOMY</h1>
+
+  <nav>
+    <a href="{% url 'home' %}" style="margin: 0 15px; color: white; text-decoration: none;">الرئيسية</a>
+    <a href="{% url 'products-list' %}" style="margin: 0 15px; color: white; text-decoration: none;">المنتجات</a>
+    <a href="{% url 'bulk-order' %}" style="margin: 0 15px; color: white; text-decoration: none;">طلب بالجملة</a>
+    <a href="{% url 'contact' %}" style="margin: 0 15px; color: white; text-decoration: none;">تواصل معنا</a>
+
+    {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}" style="margin: 0 15px; color: white; text-decoration: none;">تسجيل الخروج</a>
+    {% else %}
+      <a href="{% url 'login' %}" style="margin: 0 15px; color: white; text-decoration: none;">تسجيل الدخول</a>
+    {% endif %}
+  </nav>
+
+  <input type="search" placeholder="ابحث..." style="padding: 5px 10px; border-radius: 10px; border: none;">
+</header>
