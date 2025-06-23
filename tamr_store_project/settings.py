@@ -1,16 +1,19 @@
 from pathlib import Path
 import os
+from decouple import config
+import dj_database_url
 
 # المسار الرئيسي للمشروع
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# مفتاح الأمان (لا تشاركه خارج بيئة التطوير)
-SECRET_KEY = 'django-insecure-d@gomkz9zac2$ho_9hzjx!8a78_w8@%f11h_%_dib$)mx@v*jk'
+# مفتاح الأمان من متغير البيئة
+SECRET_KEY = config('SECRET_KEY')
 
-# تفعيل وضع التطوير
-DEBUG = True
+# وضع التطوير/الإنتاج
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+# السماح بجميع المضيفين مؤقتًا (يمكنك تخصيصه لاحقًا)
+ALLOWED_HOSTS = ['*']
 
 # التطبيقات المثبتة
 INSTALLED_APPS = [
@@ -31,7 +34,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
 ]
 
-# الوسطاء (Middleware)
+# الوسطاء
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -65,28 +68,17 @@ TEMPLATES = [
 # تطبيق WSGI
 WSGI_APPLICATION = 'tamr_store_project.wsgi.application'
 
-# قاعدة البيانات
+# إعداد قاعدة البيانات عبر DATABASE_URL
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(default=config('DATABASE_URL'))
 }
 
-# تحقق كلمات المرور
+# التحقق من كلمات المرور
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 # اللغة والمنطقة الزمنية
@@ -97,13 +89,13 @@ USE_I18N = True
 USE_TZ = True
 
 # الملفات الثابتة
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # إعدادات Cloudinary
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dfteqxxkt',  # ← غيّرها إلى اسم حسابك
-    'API_KEY': '737125841525348',        # ← غيّرها إلى مفتاح API الخاص بك
-    'API_SECRET': '6R--oPKjKT_0W1LzPzEDR-gh5TU',  # ← غيّرها إلى السر
+    'CLOUD_NAME': config('CLOUD_NAME'),
+    'API_KEY': config('CLOUD_API_KEY'),
+    'API_SECRET': config('CLOUD_API_SECRET'),
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
