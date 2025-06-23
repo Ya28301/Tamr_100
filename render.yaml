@@ -2,6 +2,7 @@ services:
   - type: web
     name: tamr-store
     runtime: python
+    pythonVersion: 3.11  # ← هنا الإضافة المهمة
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn tamr_store_project.wsgi:application
     envVars:
@@ -11,4 +12,3 @@ services:
         generateValue: true
       - key: DEBUG
         value: "False"
-    pythonVersion: 3.11
