@@ -6,8 +6,8 @@ services:
     startCommand: gunicorn tamr_store_project.wsgi:application
     envVars:
       - key: DATABASE_URL
-        value: postgresql://db_tamr_store_project_v7os_user:fEQDGKSgHuHN5UTiLRne30FLLvwbrv6k@dpg-d1ccasuuk2gs73aisflg-a.oregon-postgres.render.com/db_tamr_store_project_v7os
+        fromEnvVar: DATABASE_URL
       - key: SECRET_KEY
-        generateValue: true
+        fromEnvVar: SECRET_KEY
       - key: DEBUG
         value: "False"
